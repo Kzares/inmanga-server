@@ -3,21 +3,14 @@ CREATE TABLE mangas(
     title VARCHAR(150) NOT NULL, 
     released DATE NOT NULL, 
     author VARCHAR(150) NOT NULL, 
-    sinopsis TEXT NOT NULL, 
-    review TEXT NOT NULL, 
+    sinopsis VARCHAR(1000) NOT NULL, 
+    review VARCHAR(1000) NOT NULL, 
     likes INT NOT NULL, 
     score FLOAT NOT NULL, 
     points INT NOT NULL,
     categories json 
 );
-CREATE TABLE users( 
-    id UUID NOT NULL PRIMARY KEY, 
-    username VARCHAR(150) NOT NULL, 
-    password VARCHAR(150) NOT NULL, 
-    saved json,
-    hidden json,
-    liked json
-);
+CREATE TABLE users( id UUID NOT NULL PRIMARY KEY, username VARCHAR(150) NOT NULL, password VARCHAR(150) NOT NULL, saved json,hidden json,liked json);
 CREATE TABLE admins( 
     id UUID NOT NULL PRIMARY KEY, 
     username VARCHAR(150) NOT NULL, 
@@ -51,9 +44,7 @@ INSERT INTO mangas (id, title, released, author, sinopsis, review, likes, score,
 VALUES ('ebaadfd4-4da4-4a67-ba08-38e19479e283', 'chainsaw man', '2018-12-03', 'tatsuki fujimoto', 
 'A chainsaw-wielding demon hunter fights to protect humanity from the monsters that inhabit the world.', 'Chainsaw Man is an extremely fun and adrenaline-packed manga that will keep you hooked from start to finish. The characters are memorable and the story is full of twists and turns that will leave you on the edge of your seat', 1500, 9.5, 500, '["shounen", "accion", "drama"]'::jsonb);
 
-INSERT INTO mangas (id, title, released, author, sinopsis, review, likes, score, points, categories)
-VALUES ('d31809f2-d7ab-4e5d-b7f9-9d9cdfc4f4ad', 'tokyo ghoul', '2011-09-08', 'sui ishida', 
-'A young man becomes a ghoul after being attacked by one, and must navigate being half-human, half-monster in a world that hates and fears his kind.', 'Tokyo Ghoul is a dark and thrilling manga that will leave you wanting more. The character development is excellent and the story is full of unexpected twists and turns. Highly recommended!', 2500, 8.7, 200, '["shounen","horror", "accion", "drama"]'::jsonb);
+INSERT INTO mangas (id, title, released, author, sinopsis, review, likes, score, points, categories) VALUES ('d31809f2-d7ab-4e5d-b7f9-9d9cdfc4f4ad', 'tokyo ghoul', '2011-09-08', 'sui ishida', 'A young man becomes a ghoul after being attacked by one, and must navigate being half-human, half-monster in a world that hates and fears his kind.', 'Tokyo Ghoul is a dark and thrilling manga that will leave you wanting more. The character development is excellent and the story is full of unexpected twists and turns. Highly recommended!', 2500, 8.7, 200, '["shounen","horror", "accion", "drama"]'::jsonb)
 
 INSERT INTO mangas(id, title, released, author, sinopsis, review, likes, score, points, categories) 
 VALUES 

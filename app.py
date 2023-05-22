@@ -7,7 +7,7 @@ import os
 from routes import Mangas, Users
 
 app=Flask(__name__,static_folder='static')
-CORS(app, resources={"*": {"origins" : "http://localhost:8080" } })
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 ######__saving the mangas images
 @app.route('/image/<name>', methods=['POST'])
@@ -36,4 +36,4 @@ if __name__ == '__main__':
     #error handler
     app.register_error_handler(404, page_not_found)
 
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
