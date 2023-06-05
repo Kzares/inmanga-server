@@ -47,6 +47,24 @@ class MangaModel:
                 
         except Exception as ex:
             raise Exception(ex)
+
+    ######__get manga links
+    @classmethod
+    def get_manga_links(self, id):
+        try:
+            connection = get_conection()
+
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT links FROM mangas WHERE id = %s", (id,) )
+                row = cursor.fetchone()
+                
+                links = row[0]
+
+            connection.close()
+            return links
+                
+        except Exception as ex:
+            raise Exception(ex)
         
     ######__Search manga by name
     @classmethod
@@ -164,6 +182,23 @@ class MangaModel:
             with connection.cursor() as cursor:
                 cursor.execute("""UPDATE mangas SET title = %s , released = %s , author = %s , sinopsis = %s , review = %s , score = %s, categories = %s
                                 WHERE id = %s """, (  manga.title, manga.released, manga.author, manga.sinopsis, manga.review, manga.score,manga.categories,  manga.id ) )
+                affected_rows= cursor.rowcount
+                connection.commit()
+            
+            connection.close()
+            return affected_rows
+                
+        except Exception as ex:
+            raise Exception(ex)
+
+    ######__update download links
+    @classmethod
+    def update_download_liks(self, id, links):
+        try:
+            connection = get_conection()
+
+            with connection.cursor() as cursor:
+                cursor.execute('UPDATE mangas SET links = %s WHERE id = %s', [json.dumps(links), id])
                 affected_rows= cursor.rowcount
                 connection.commit()
             

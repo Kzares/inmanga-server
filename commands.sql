@@ -25,6 +25,15 @@ ALTER TABLE users ALTER COLUMN saved TYPE jsonb USING saved::jsonb;
 ALTER TABLE users ALTER COLUMN hidden TYPE jsonb USING hidden::jsonb;
 ALTER TABLE users ALTER COLUMN liked TYPE jsonb USING liked::jsonb;
 
+UPDATE mangas SET links = 
+'{"https://www.ejemplo.com/1": "Volumen 1 capitulos 1-20",
+ "https://www.ejemplo.com/2": "Volumen 2 capitulos 21-30",
+"https://www.ejemplo.com/3": "Volumen 3 capitulos 31-40",
+ "https://www.ejemplo.com/4": "Volumen 4 capitulos 41-50",
+ "https://www.ejemplo.com/5": "Volumen 5 capitulos 51-60",
+ "https://www.ejemplo.com/6": "Volumen 6 capitulos 61-70"}'
+
+  WHERE id = 'a455f7cc-45dc-44a7-9b9e-d3c3bccb501a';
 \c inmanga
 
 

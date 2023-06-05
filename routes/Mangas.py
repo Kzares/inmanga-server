@@ -31,6 +31,14 @@ def get_manga(id):
             return jsonify({}), 404
     except Exception as ex:
         return jsonify({'message' : str(ex)}), 500
+#####_get manga links
+@main.route('/manga-links/<id>')
+def get_manga_links(id):
+    try:
+        links = MangaModel.get_manga_links(id)
+        return links
+    except Exception as ex:
+        return jsonify({'message' : str(ex)}), 500
 
 
 #####_search by name
@@ -130,6 +138,21 @@ def edit_manga(id):
     except Exception as ex:
         return jsonify({'message' : str(ex)}), 500
     
+#####__Update manga download links 
+@main.route('/edit/update_download_liks/<id>', methods=['PUT'])
+def update_download_liks(id):
+    try:
+        links = request.json['links']
+        affected_rows = MangaModel.update_download_liks(id, links)
+
+        if affected_rows == 1:
+            return jsonify({'message': 'succesfully created'})
+        else:
+            return jsonify({'message' : 'No movie updated'}), 500
+
+    except Exception as ex:
+        return jsonify({'message' : str(ex)}), 500
+
 
 #####__Search by Category
 
